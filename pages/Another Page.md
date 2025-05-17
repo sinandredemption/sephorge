@@ -1,0 +1,1 @@
+This is another page to demonstrate how WikiLink-style links are automatically resolved.
