@@ -134,7 +134,6 @@ def convert_md_to_html(input_file_path: str, output_file_path: str, template_fil
     try:
         with open(output_file_path, 'w', encoding='utf-8') as f:
             f.write(rendered_html)
-        print(f"Successfully converted: {input_file_path} -> {output_file_path}")
     except Exception as e:
         print(f"Error writing HTML file {output_file_path}: {e}")
 
@@ -176,8 +175,6 @@ def process_files(base_dir: Path, pages_dir: Path, public_dir: Path, template_fi
                    source_file_path.stat().st_mtime > destination_file_path.stat().st_mtime:
                     print(f"Processing Markdown: {source_file_path} -> {destination_file_path}")
                     convert_md_to_html(str(source_file_path), str(destination_file_path), str(template_file))
-                else:
-                    print(f"Skipping (up-to-date): {destination_file_path}")
 
             else:
                 # For other files (static assets like images, CSS, JS), just copy them
@@ -191,8 +188,6 @@ def process_files(base_dir: Path, pages_dir: Path, public_dir: Path, template_fi
                         shutil.copy2(source_file_path, destination_file_path) # copy2 preserves metadata
                     except Exception as e:
                         print(f"Error copying file {source_file_path} to {destination_file_path}: {e}")
-                else:
-                    print(f"Skipping (up-to-date asset): {destination_file_path}")
 
 def main():
     """

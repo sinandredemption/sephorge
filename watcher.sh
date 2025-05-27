@@ -15,18 +15,18 @@ if ! command -v inotifywait &> /dev/null; then
 fi
 
 # Initialize
-echo "Initializing Sephorge watcher..."
+echo "==> Initializing Sephorge watcher..."
 
 # First-time: rebuild site
 python3 "$SEPHORGE_SCRIPT"
 
-echo "Watching for changes in $PAGES_DIR directory..."
+echo "==> Watching for changes in $PAGES_DIR directory..."
 
 # Watch for file changes 
 inotifywait -m -r -e modify,create,delete,move "$PAGES_DIR" | while read path action file; do
-    echo "Change detected: $path$file ($action)"
+    echo "==> Change detected: $path$file ($action)"
 
-    python3 "$SEPHORGE_SCRIPT"
+    eval "$SEPHORGE_SCRIPT"
 
-    echo "Site rebuilt successfully!"
+    echo "==> Site rebuilt successfully!"
 done
