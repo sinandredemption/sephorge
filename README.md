@@ -13,7 +13,7 @@ Sephorge is a lightweight static site generator that converts markdown files to 
 
 ```
 sephorge/
-├── md/                # Markdown source files
+├── pages/                # Markdown source files
 ├── public/            # Generated HTML output
 ├── sephorge.py        # Site generator
 ├── watcher.sh         # File system watcher
